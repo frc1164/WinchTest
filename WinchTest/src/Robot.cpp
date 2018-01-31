@@ -76,6 +76,12 @@ public:
 			Winch1->Set(RightStick);
 			Winch2->Set(RightStick);
 			Winch3->Set(RightStick);
+
+			if (Stick->GetRawButton(2) == 1){
+				Winch1->Set(1);
+				Winch2->Set(1);
+				Winch3->Set(1);
+			}
 		}
 	}
 
