@@ -26,11 +26,16 @@ public:
 		frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
 
 		Stick = new Joystick(0);
-		Winch1 = new Victor(5);
-		Winch2 = new Victor(6);
-		Winch3 = new Victor(7);
+		Winch1 = new Victor(1); // good
+		Winch2 = new Victor(2); // good
+		Winch3 = new Victor(3); // good
+		Winch4 = new Victor(5); // good
+		Winch5 = new Victor(6); // good
+		Winch6 = new Victor(7); // good
 
-		Winch3->SetInverted(true);
+		Winch1->SetInverted(true);
+		Winch2->SetInverted(true);
+		Winch6->SetInverted(true);
 	}
 
 	/*
@@ -68,20 +73,31 @@ public:
 		}
 	}
 
-	void TeleopInit() {}
+	void TeleopInit() {
+	}
 
 	void TeleopPeriodic() {
 		if (IsEnabled()){
 			RightStick = Stick->GetRawAxis(2);
-			Winch1->Set(RightStick);
-			Winch2->Set(RightStick);
-			Winch3->Set(RightStick);
 
 			if (Stick->GetRawButton(2) == 1){
 				Winch1->Set(1);
 				Winch2->Set(1);
 				Winch3->Set(1);
+				Winch4->Set(1);
+				Winch5->Set(1);
+				Winch6->Set(1);
 			}
+
+			else{
+				Winch1->Set(RightStick);
+				Winch2->Set(RightStick);
+				Winch3->Set(RightStick);
+				Winch4->Set(RightStick);
+				Winch5->Set(RightStick);
+				Winch6->Set(RightStick);
+			}
+
 		}
 	}
 
@@ -94,7 +110,7 @@ private:
 	const std::string kAutoNameCustom = "My Auto";
 	std::string m_autoSelected;
 	Joystick *Stick;
-	Victor *Winch1, *Winch2, *Winch3;
+	Victor *Winch1, *Winch2, *Winch3, *Winch4, *Winch5, *Winch6;
 	double RightStick;
 };
 
